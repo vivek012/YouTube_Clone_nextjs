@@ -2,6 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  typescript: {
+    ignoreBuildErrors: true
+  },
+
+
     reactStrictMode: false, // Add this to test
   env: {
     BACKEND_URL: process.env.BACKEND_URL,

@@ -4,7 +4,7 @@ import SearchResult from "@/src/components/ui/SearchResult";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
-export default function Page() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const q = searchParams.get("query");
 
@@ -19,10 +19,16 @@ export default function Page() {
           </div>
         )}
 
-        <Suspense fallback={<div>Loading search results...</div>}>
-          <SearchResult query={q ?? ""} />
-        </Suspense>
+        <SearchResult query={q ?? ""} />
       </div>
     </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading search results...</div>}>
+      <SearchContent />
+    </Suspense>
   );
 }
