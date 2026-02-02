@@ -1,6 +1,7 @@
 "use client"
 import { Menu, Youtube, Search, Mic, VideoIcon, Bell, User } from "lucide-react"
 
+
 import { Button } from './button'
 import Link from "next/link"
 import { useState } from 'react'
@@ -9,6 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./avatar"
 import ChannelDialogue from "./ChannelDialogue"
 import { useRouter } from "next/navigation"; 
 import { useUser } from "@/lib/AuthContext"
+import Image from "next/image"
 
 
 
@@ -43,8 +45,9 @@ const Header = () => {
                     <Menu style={{ width: 24, height: 24 }} className="w-6 h-6" />
                 </Button>
                 <Link className="flex items-center gap-2" href="/">
-                    <div className=" flex items-center justify-center bg-red-600 rounded p-1 ">
-                        <Youtube className="w-6 h-6 rounded-sm text-white bg-red-600" />
+                    <div className=" flex items-center justify-center rounded p-1 ">
+                        {/* <Youtube className="w-6 h-6 rounded-sm text-white bg-red-600" /> */}
+                        <Image src="/youtube.png" width={40} height={20} alt="Youtube Logo" />
                     </div>
                     <span className="text-xl font-medium ">Youtube</span>
                     <span className=" text-xs text-gray-400 ml-1">IN</span>
