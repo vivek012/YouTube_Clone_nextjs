@@ -11,8 +11,16 @@ import { useUser } from "@/lib/AuthContext";
 
 
 interface LikedItem {
-    id: string;
-    videoId: string;
+    // _id: Key | null | undefined;
+    _id: string;
+    videoId: {
+        _id: string;
+        filepath: string;
+        videotitle: string;
+        videochannel: string;
+        views: string;
+        createdAt: string;
+    };
     viewer: string;
     watchedon: string;
     video: {
@@ -25,38 +33,33 @@ interface LikedItem {
 }
 
 export default function LikedContent() {
-    // const user = {
-    //     id: "1",
-    //     name: "jhon Doe",
-    //     email: "john@example.com",
-    //     image: "https://github.com/shadcn.png?height=32&width=32",
-    // }
 
     const [liked, setLiked] = useState<LikedItem[]>([]);
     const [loading, setLoading] = useState(true);
     const { user } = useUser();
 
-   useEffect(() => {
-    if (user) {
-      loadLiked();
-    }
-  }, [user]);
-
+    
     const loadLiked = async () => {
         if (!user) return;
-          try {
-      const likedData = await axiosInstance.get(`api/like/${user?._id}`);
-
-      setLiked(likedData.data);
-    } catch (error) {
-      console.error("Error loading liked videos:", error);
-    } finally {
-      setLoading(false);
-    }
-
+        try {
+            const likedData = await axiosInstance.get(`api/reaction/${user?._id}`);
+            // console.log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",likedData)
+            
+            setLiked(likedData.data);
+        } catch (error) {
+            console.error("Error loading liked videos:", error);
+        } finally {
+            setLoading(false);
+        }
+        
     };
-
-
+    
+    useEffect(() => {
+     if (user) {
+       loadLiked();
+     }
+   }, [user]);
+    
     const handleRemoveLiked = async ( likedId: string) => {
         try {
             setLiked((prevLiked) => prevLiked.filter((item) => item.id !== likedId));
@@ -130,7 +133,7 @@ export default function LikedContent() {
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                                <DropdownMenuItem onClick={() => handleRemoveLiked(item.id)}>
+                                <DropdownMenuItem onClick={() => handleRemoveLiked(item._id)}>
                                     <X style={{width: 20, height: 20}} className="mr-2"/>
                                     Remove from Liked videos
                                 </DropdownMenuItem>

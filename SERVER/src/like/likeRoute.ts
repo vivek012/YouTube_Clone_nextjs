@@ -1,10 +1,10 @@
-import { Router } from "express";
-import { handleLike, getAllLikedVideos } from "./likeController";
+// import { Router } from "express";
+// import { handleLike, getAllLikedVideos } from "./likeController";
 
 
-const likeRouter = Router();
+// const likeRouter = Router();
 
-likeRouter.post("/:videoId", handleLike)
-likeRouter.get("/:userId", getAllLikedVideos)
+// likeRouter.post("/:videoId", handleLike)
+// likeRouter.get("/:userId", getAllLikedVideos)
 
-export default likeRouter;
+// export default likeRouter;

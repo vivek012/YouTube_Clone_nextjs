@@ -5,7 +5,7 @@ import videoRouter from "./videoFile/videoRoute"
 
 import path from "path";
 import bodyParser from "body-parser";
-import likeRouter from "./like/likeRoute";
+// import likeRouter from "./like/likeRoute";
 import historyRoutes from "./history/historyRoute"
 import watchLaterRoutes from "./watchLater/watchLaterRoute";
 import commentRoutes from "./comment/commentRoute";

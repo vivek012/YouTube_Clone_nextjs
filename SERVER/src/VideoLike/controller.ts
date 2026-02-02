@@ -83,3 +83,29 @@ export const totalReaction = async(req: Request, res: Response)=>{
         })
     }
 }
+
+
+
+
+export const getAllLikedVideos = async (req: Request, res: Response) => {
+    const { userId } = req.params;
+
+    try {
+        const likedVideo = await VideoReaction.find({ userId }).populate({
+            path: "videoId",
+            model: 'Video',
+        })
+            .exec();
+
+        return res.status(200).json(likedVideo);
+
+
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            message: "Something went wrong "
+        })
+    }
+
+}
